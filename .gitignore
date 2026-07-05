@@ -1,3 +1,9 @@
+﻿# Abaikan semua file hasil export aplikasi/game
+*.exe
+*.apk
+*.vckpro
+*.apple
+
 # Godot 4+ specific ignores
 .godot/
 /android/
