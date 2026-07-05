@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://ydfgwsrhe525"]
+
+[ext_resource type="Texture2D" uid="uid://b5saxmw2d43cy" path="res://asset/tileset/Bunker Tileset v2.png" id="1_pno75"]
+[ext_resource type="Texture2D" uid="uid://c37r3qhli0igk" path="res://0015_20.png" id="2_cfsmh"]
+
+[sub_resource type="GDScript" id="GDScript_cdo41"]
+script/source = "extends Area2D
+@export_file(\"*.tscn\") var target_scene: String
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"player\" or body.is_in_group(\"player\"):
+		if target_scene != \"\":
+			print(\"Pindah Room\", target_scene)
+			get_tree().change_scene_to_file(target_scene)
+		else:
+			print(\"inspector belum diisi\")
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7kbi"]
+texture = ExtResource("1_pno75")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+3:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+0:8/0 = 0
+3:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+0:9/0 = 0
+3:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cdo41"]
+sources/0 = SubResource("TileSetAtlasSource_w7kbi")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1e8e"]
+radius = 18.0
+height = 58.0
+
+[node name="portal" type="Area2D" unique_id=1032379617]
+script = SubResource("GDScript_cdo41")
+target_scene = "uid://ck4s6gbuocy2i"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604498594]
+texture_filter = 1
+position = Vector2(17, 14)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 15, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 15, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0)
+tile_set = SubResource("TileSet_cdo41")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMapLayer" unique_id=894147992]
+position = Vector2(1192, 52)
+energy = 2.58
+texture = ExtResource("2_cfsmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=625299605]
+position = Vector2(514, 177)
+shape = SubResource("CapsuleShape2D_f1e8e")
