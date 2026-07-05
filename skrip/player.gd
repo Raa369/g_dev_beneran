@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("lompat") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	
 	if not is_on_floor():
 		player_ui.play("jump")
 
