@@ -1,0 +1,516 @@
+[gd_scene format=3 uid="uid://bixmcgvkmrgws"]
+
+[ext_resource type="Texture2D" uid="uid://8piwm6vdu7o1" path="res://asset/karakter/NPC/merchant.png" id="1_7b46c"]
+[ext_resource type="Texture2D" uid="uid://ccon2q4ctvj8" path="res://asset/object/boxes&decor/box2.png" id="2_7dmxk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2xt1"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsljh"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acvqb"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4518d"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpjhx"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67bbb"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27mvu"]
+atlas = ExtResource("1_7b46c")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1e8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2xt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsljh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acvqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4518d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpjhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67bbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27mvu")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_f1e8e"]
+resource_name = "detect"
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_r2jag"]
+script/source = "extends Area2D
+
+@onready var pop_up1 = %opsi_interaksi
+@onready var pop_up2 = %opsi_beli
+@onready var shop = %menu_toko
+var is_near_merchant = false
+
+func _ready() -> void:
+	body_entered.connect(when_body_masuk)
+	body_exited.connect(when_body_keluar)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func when_body_masuk(body:Node2D)-> void:
+	is_near_merchant = true
+	if body.name==\"player\" or body.is_in_group(\"player\"):
+		pop_up1.visible=true
+		pop_up2.visible=true
+
+func when_body_keluar(body:Node2D)->void:
+	is_near_merchant = false
+	if body.name==\"player\" or body.is_in_group(\"player\"):
+		pop_up1.visible=false
+		pop_up2.visible=false
+
+func _process(delta: float) -> void:
+	if is_near_merchant:
+		if Input.is_action_just_pressed(\"buy\"):
+				if shop:
+					shop.visible=!shop.visible
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1e8e"]
+size = Vector2(656, 272)
+
+[sub_resource type="Gradient" id="Gradient_y2xt1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cdo41"]
+gradient = SubResource("Gradient_y2xt1")
+fill = 1
+fill_from = Vector2(0.496875, 0.521875)
+fill_to = Vector2(0.703125, 0.084375)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1e8e"]
+bg_color = Color(0, 0, 0, 0.5058824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Gradient" id="Gradient_1ko5m"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ltnm6"]
+gradient = SubResource("Gradient_1ko5m")
+width = 127
+height = 77
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02eaw"]
+bg_color = Color(0, 0, 0, 0.76862746)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdo41"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_isgfs"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou8qp"]
+bg_color = Color(0.09411765, 0.08235294, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isgfs"]
+bg_color = Color(0.09411765, 0.08235294, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_02eaw"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_f1e8e"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ltnm6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqda8"]
+bg_color = Color(0.09411765, 0.08235294, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="Gradient" id="Gradient_7b46c"]
+offsets = PackedFloat32Array(0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f1e8e"]
+gradient = SubResource("Gradient_7b46c")
+width = 509
+height = 342
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[node name="merchant" type="AnimatedSprite2D" unique_id=1389123572]
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_f1e8e")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602221948]
+position = Vector2(-116, 56)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7dmxk")
+script = SubResource("GDScript_f1e8e")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=631477449]
+angular_damp_space_override = 1
+angular_damp = 41.322
+script = SubResource("GDScript_r2jag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=261375816]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_f1e8e")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1630967223]
+scale = Vector2(2.8102007, 3.9637697)
+color = Color(0.3529412, 0.9490196, 1, 1)
+texture = SubResource("GradientTexture2D_cdo41")
+
+[node name="Control" type="Control" parent="." unique_id=32382975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2868.0
+offset_top = -1960.0
+offset_right = -2868.0
+offset_bottom = -1960.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="opsi_beli" type="Panel" parent="Control" unique_id=986534475]
+unique_name_in_owner = true
+visible = false
+custom_maximum_size = Vector2(1000, 1000)
+layout_mode = 0
+offset_left = 2980.0
+offset_top = 1880.0
+offset_right = 3105.0
+offset_bottom = 1955.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1e8e")
+
+[node name="Label" type="Label" parent="Control/opsi_beli" unique_id=1313588909]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 20.0
+offset_right = 113.0
+offset_bottom = 48.0
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 20
+text = "Interact [i]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointLight2D2" type="PointLight2D" parent="Control/opsi_beli" unique_id=553324871]
+unique_name_in_owner = true
+position = Vector2(64, 36)
+color = Color(0.3529412, 0.9490196, 1, 1)
+texture = SubResource("GradientTexture2D_ltnm6")
+
+[node name="opsi_interaksi" type="Panel" parent="Control" unique_id=2146742797]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+custom_maximum_size = Vector2(1000, 1000)
+layout_mode = 0
+offset_left = 2976.0
+offset_top = 1964.0
+offset_right = 3101.0
+offset_bottom = 2039.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1e8e")
+
+[node name="Label" type="Label" parent="Control/opsi_interaksi" unique_id=1296767171]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 122.0
+offset_bottom = 48.0
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 20
+text = "Buy Item [b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/opsi_interaksi" unique_id=840950129]
+position = Vector2(64, 36)
+color = Color(0.3529412, 0.9490196, 1, 1)
+texture = SubResource("GradientTexture2D_ltnm6")
+
+[node name="menu_toko" type="CenterContainer" parent="Control" unique_id=26205761]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3120.0
+offset_top = 1736.0
+offset_right = 3364.0
+offset_bottom = 1812.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/menu_toko" unique_id=1363743951]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_02eaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/menu_toko/PanelContainer" unique_id=215179036]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/menu_toko/PanelContainer/VBoxContainer" unique_id=1685390750]
+layout_mode = 2
+text = "SHOP"
+label_settings = SubResource("LabelSettings_cdo41")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer" unique_id=665455994]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_isgfs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer" unique_id=809847889]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1248064447]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=879473694]
+layout_mode = 2
+text = "Please pick an items:"
+label_settings = SubResource("LabelSettings_cdo41")
+
+[node name="list_barang" type="GridContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1830227494]
+layout_mode = 2
+columns = 5
+
+[node name="Button" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=2143653144]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button2" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1490062457]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button3" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=859842816]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button4" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=313628463]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button5" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1141762661]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button6" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1035104603]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button7" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=522720656]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button8" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=660343577]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button9" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1038372806]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button10" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=749811983]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button11" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1634389210]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button12" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1017378789]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button13" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1705012664]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button14" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=2020412015]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Button15" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/list_barang" unique_id=1083830876]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou8qp")
+text = "sword"
+
+[node name="Status_item" type="PanelContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1792859017]
+custom_minimum_size = Vector2(128, 256)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_isgfs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/Status_item" unique_id=1459866076]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/Status_item/VBoxContainer" unique_id=1102833678]
+layout_mode = 2
+text = "STATUS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer/Status_item/VBoxContainer" unique_id=62880756]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_02eaw")
+
+[node name="HSeparator2" type="HSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer" unique_id=631673847]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_f1e8e")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/menu_toko/PanelContainer/VBoxContainer" unique_id=1356014237]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=481860528]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ltnm6")
+
+[node name="Button" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1454371584]
+custom_minimum_size = Vector2(40, 15)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqda8")
+text = "buy"
+
+[node name="VSeparator2" type="VSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=194799386]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ltnm6")
+
+[node name="Button2" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=409931749]
+custom_minimum_size = Vector2(40, 15)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqda8")
+text = "sell"
+
+[node name="VSeparator" type="VSeparator" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1046847721]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ltnm6")
+
+[node name="Button3" type="Button" parent="Control/menu_toko/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1267231725]
+custom_minimum_size = Vector2(40, 15)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqda8")
+text = "exit"
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/menu_toko" unique_id=562169727]
+position = Vector2(248, 168)
+texture = SubResource("GradientTexture2D_f1e8e")
