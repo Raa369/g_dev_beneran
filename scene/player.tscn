@@ -5,28 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://c4ejdilywtj5r" path="res://asset/karakter/player/jump/you_jump.png" id="3_8ie14"]
 [ext_resource type="Texture2D" uid="uid://di207nmenjbmf" path="res://asset/karakter/player/run/you_run.png" id="4_pk8el"]
 [ext_resource type="Texture2D" uid="uid://ci6woj3vkhwk4" path="res://asset/karakter/player/jump/you_punch.png" id="5_3vgh4"]
-[ext_resource type="Texture2D" uid="uid://tm7wuv0ytdpi" path="res://asset/tileset/New Element 11/0001_0.png" id="6_h3knh"]
-[ext_resource type="Texture2D" uid="uid://cotl5biki81y3" path="res://asset/tileset/New Element 11/0002_20.png" id="7_n3008"]
-[ext_resource type="Texture2D" uid="uid://bsb2or4u5jkpf" path="res://asset/tileset/New Element 11/0003_20.png" id="8_wpsxb"]
-[ext_resource type="Texture2D" uid="uid://ojmqpa2emhm" path="res://asset/tileset/New Element 11/0004_20.png" id="9_rt08c"]
-[ext_resource type="Texture2D" uid="uid://bcxdgqetjmjkw" path="res://asset/tileset/New Element 11/0005_20.png" id="10_6vs06"]
-[ext_resource type="Texture2D" uid="uid://d3sear2ccop2r" path="res://asset/tileset/New Element 11/0006_20.png" id="11_4uieu"]
-[ext_resource type="Texture2D" uid="uid://8vlug6wkanys" path="res://asset/tileset/New Element 11/0007_20.png" id="12_5wapc"]
-[ext_resource type="Texture2D" uid="uid://cu1me6qc6f7ve" path="res://asset/tileset/New Element 11/0008_20.png" id="13_xj5ck"]
-[ext_resource type="Texture2D" uid="uid://bjr5opc1yuwos" path="res://asset/tileset/New Element 11/0009_20.png" id="14_6lu7o"]
-[ext_resource type="Texture2D" uid="uid://b63rp0h2vtu7b" path="res://asset/tileset/New Element 11/0010_20.png" id="15_8rkx0"]
-[ext_resource type="Texture2D" uid="uid://dm55w408pwucp" path="res://asset/tileset/New Element 11/0011_20.png" id="16_wyue1"]
-[ext_resource type="Texture2D" uid="uid://dvtiiunhavmbo" path="res://asset/tileset/New Element 11/0012_20.png" id="17_oyaf6"]
-[ext_resource type="Texture2D" uid="uid://bg8ck7asxo1wc" path="res://asset/tileset/New Element 11/0013_20.png" id="18_mtygy"]
-[ext_resource type="Texture2D" uid="uid://ds718fnn8puxv" path="res://asset/tileset/New Element 11/0014_20.png" id="19_fmxba"]
-[ext_resource type="Texture2D" uid="uid://unw8pebkyad3" path="res://asset/tileset/New Element 11/0015_20.png" id="20_n8hgv"]
-[ext_resource type="Texture2D" uid="uid://b7whdlr4dptnn" path="res://asset/tileset/New Element 11/0016_20.png" id="21_od4qb"]
-[ext_resource type="Texture2D" uid="uid://cfwa8xvtexgxb" path="res://asset/tileset/New Element 11/0017_20.png" id="22_wsvhi"]
-[ext_resource type="Texture2D" uid="uid://dtyysb1t57skx" path="res://asset/tileset/New Element 11/0018_20.png" id="23_slqdk"]
-[ext_resource type="Texture2D" uid="uid://dsn7vcb3g2xtp" path="res://asset/tileset/New Element 11/0019_20.png" id="24_1yrng"]
-[ext_resource type="Texture2D" uid="uid://dfkrw5b36oc0w" path="res://asset/tileset/New Element 11/0020_20.png" id="25_acav1"]
-[ext_resource type="Texture2D" uid="uid://c7632w2w0ufd8" path="res://asset/tileset/New Element 11/0021_20.png" id="26_36u8p"]
-[ext_resource type="Texture2D" uid="uid://b1kg7d84do6j8" path="res://0016_20.png" id="27_rtno0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2e2q"]
 atlas = ExtResource("2_l1uwf")
@@ -170,76 +148,16 @@ animations = [{
 radius = 6.2857056
 height = 18.285706
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_02eaw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_h3knh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_n3008")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_wpsxb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_rt08c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_6vs06")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_4uieu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_5wapc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_xj5ck")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_6lu7o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_8rkx0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_wyue1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_oyaf6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_mtygy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_fmxba")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_n8hgv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_od4qb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_wsvhi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_slqdk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_1yrng")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_acav1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_36u8p")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 18.0
-}]
+[sub_resource type="Gradient" id="Gradient_jnbfq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s4jxa"]
+gradient = SubResource("Gradient_jnbfq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.496875, 0.521875)
+fill_to = Vector2(0.859375, 0.234375)
 
 [node name="player" type="CharacterBody2D" unique_id=2130383393]
 texture_filter = 1
@@ -263,22 +181,9 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=2082485445]
-texture_filter = 1
-position = Vector2(2, 6)
-scale = Vector2(4.276, 2)
-sprite_frames = SubResource("SpriteFrames_02eaw")
-autoplay = "default"
-frame_progress = 0.55446357
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1120622207]
-texture_filter = 1
-position = Vector2(-12, 0)
-scale = Vector2(2.138, 2)
-energy = 4.78
-shadow_enabled = true
-shadow_filter_smooth = 18.1
-texture = ExtResource("27_rtno0")
-texture_scale = 1.25
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=407397124]
+scale = Vector2(2.8102007, 3.9637697)
+color = Color(0.8745098, 0.87058824, 0.43137255, 1)
+texture = SubResource("GradientTexture2D_s4jxa")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
