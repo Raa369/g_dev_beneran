@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://ods6qii8tfar"]
+
+[ext_resource type="Texture2D" uid="uid://ccx5dmd5mlmg0" path="res://asset/karakter/enemy/bot-1/Bot1_idle.png" id="1_0h1r1"]
+[ext_resource type="Texture2D" uid="uid://dkvsf2mfhogqd" path="res://asset/karakter/enemy/bot-1/Bot1_run.png" id="1_pkqe4"]
+[ext_resource type="Texture2D" uid="uid://01ia1stt80rs" path="res://asset/karakter/enemy/bot-1/Bot1_die.png" id="2_jxq3n"]
+
+[sub_resource type="GDScript" id="GDScript_kust7"]
+resource_name = "enemy.gd"
+script/source = "extends CharacterBody2D
+
+const speed = 100
+var health = 80
+var health_max = 80
+var health_min = 0
+var chase: bool = false
+var dead: bool = false
+var taking_damage: bool = false
+var deal_damage = 20
+var is_damage_dealing: bool = false
+
+# 1. KASIH ARAH AWAL BIAR GAK DIAM PAS SPAWN
+var direction: Vector2 = Vector2.LEFT 
+const gravity = 900
+var knock_back = 200
+var is_roaming: bool = true
+
+func _process(delta):
+	# Gravitasi hanya ngaruh ke Y, jangan paksa velocity.x = 0 di sini
+	if !is_on_floor():
+		velocity.y += delta * gravity
+	
+	move(delta)
+	move_and_slide()
+	handling_animasi() # <--- WAJIB DIPANGGIL BIAR ANIMASINYA JALAN
+
+func move(delta):
+	if !dead:
+		if !chase:
+			# 2. PAKAI RUMUS INI BIAR LANGSUNG JALAN DI TEMPAT KONSISTEN
+			velocity.x = direction.x * speed
+		is_roaming = true
+	else:
+		velocity.x = 0
+		
+func _on_dir_timer_timeout() -> void:
+	# Memanfaatkan fungsi chose lu yang udah bener
+	$dir_timer.wait_time = chose([1.5, 2.0, 2.5])
+	
+	if !chase:
+		direction = chose([Vector2.RIGHT, Vector2.LEFT])
+
+func chose(array):
+	array.shuffle()
+	return array.front()
+			
+func handling_animasi():
+	var animasi = $AnimatedSprite2D
+	
+	if !dead and !taking_damage:
+		# Pastikan nama animasi di AnimatedSprite2D lu persis \"Running\" (Hati-hati typo)
+		animasi.play(\"Running\")
+		
+		# Balik sprite sesuai arah jalan
+		if direction.x < 0:
+			animasi.flip_h = true
+		elif direction.x > 0:
+			animasi.flip_h = false
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gvn3"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw6yi"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmboe"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og0ch"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jakgg"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22ucy"]
+atlas = ExtResource("1_pkqe4")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irnid"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cim3"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukvbe"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8te5q"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3h76"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33kaj"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rltp"]
+atlas = ExtResource("2_jxq3n")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkqe4"]
+atlas = ExtResource("1_0h1r1")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxq3n"]
+atlas = ExtResource("1_0h1r1")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsdf0"]
+atlas = ExtResource("1_0h1r1")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v18m2"]
+atlas = ExtResource("1_0h1r1")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogedd"]
+atlas = ExtResource("1_0h1r1")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xgru"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gvn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw6yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmboe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og0ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jakgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22ucy")
+}],
+"loop": 0,
+"name": &"Running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irnid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cim3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukvbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8te5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3h76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33kaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rltp")
+}],
+"loop": 0,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkqe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxq3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsdf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v18m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogedd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1e8e"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1e8e"]
+size = Vector2(25, 32)
+
+[node name="bot-1" type="CharacterBody2D" unique_id=682794179]
+script = SubResource("GDScript_kust7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1684722896]
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_8xgru")
+animation = &"dead"
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="contact" type="CollisionShape2D" parent="." unique_id=2096904398]
+position = Vector2(1, 3)
+shape = SubResource("CapsuleShape2D_f1e8e")
+debug_color = Color(0.9735307, 0, 0.43670475, 0.41960785)
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1079663435]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1718683673]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_f1e8e")
+
+[node name="dir_timer" type="Timer" parent="." unique_id=314803589]
+autostart = true
+
+[connection signal="timeout" from="dir_timer" to="." method="_on_dir_timer_timeout"]
