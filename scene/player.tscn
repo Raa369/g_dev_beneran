@@ -46,6 +46,10 @@ region = Rect2(1024, 0, 256, 256)
 atlas = ExtResource("4_pk8el")
 region = Rect2(1280, 0, 256, 256)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn843"]
+atlas = ExtResource("5_3vgh4")
+region = Rect2(512, 0, 256, 256)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_srxof"]
 atlas = ExtResource("5_3vgh4")
 region = Rect2(0, 0, 256, 256)
@@ -54,19 +58,15 @@ region = Rect2(0, 0, 256, 256)
 atlas = ExtResource("5_3vgh4")
 region = Rect2(256, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn843"]
-atlas = ExtResource("5_3vgh4")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bw2vv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("5_3vgh4")
 region = Rect2(768, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xs1iu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ij"]
 atlas = ExtResource("5_3vgh4")
 region = Rect2(1024, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6dama"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
 atlas = ExtResource("5_3vgh4")
 region = Rect2(1280, 0, 256, 256)
 
@@ -122,31 +122,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pn843")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_srxof")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pxeqq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pn843")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bw2vv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xs1iu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6dama")
 }],
 "loop": 0,
-"name": &"punch",
+"name": &"pukul kanan",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4jxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp4bs")
+}],
+"loop": 0,
+"name": &"pukul kiri",
 "speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c2rpq"]
 radius = 6.2857056
 height = 18.285706
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxagg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs424"]
+bg_color = Color(0.25490198, 1, 1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oh5ij"]
+size = Vector2(300, 15)
 
 [sub_resource type="Gradient" id="Gradient_jnbfq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -167,7 +185,7 @@ script = ExtResource("1_xsw3c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=345220969]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_f1e8e")
-animation = &"idle"
+animation = &"pukul kiri"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195834636]
@@ -181,9 +199,29 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
+[node name="health bar" type="ProgressBar" parent="Camera2D" unique_id=1496588273]
+custom_minimum_size = Vector2(300, 15)
+custom_maximum_size = Vector2(-1, 15)
+offset_left = -552.0
+offset_top = -292.0
+offset_right = -352.0
+offset_bottom = -277.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gxagg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qs424")
+value = 100.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Camera2D/health bar" unique_id=1844105467]
+position = Vector2(150, 8)
+energy = 1.5
+texture = SubResource("PlaceholderTexture2D_oh5ij")
+
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=407397124]
 scale = Vector2(2.8102007, 3.9637697)
 color = Color(0.8745098, 0.87058824, 0.43137255, 1)
 texture = SubResource("GradientTexture2D_s4jxa")
 
+[node name="combat_timer" type="Timer" parent="." unique_id=191422296]
+wait_time = 0.7
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="combat_timer" to="." method="_on_combat_timer_timeout"]

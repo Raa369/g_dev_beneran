@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bixmcgvkmrgws" path="res://scene/merchant.tscn" id="11_1ko5m"]
 [ext_resource type="PackedScene" uid="uid://idw2afqdi06b" path="res://scene/player.tscn" id="11_yalrh"]
 [ext_resource type="PackedScene" uid="uid://ydfgwsrhe525" path="res://scene/portal.tscn" id="13_1ko5m"]
+[ext_resource type="PackedScene" uid="uid://ods6qii8tfar" path="res://scene/bot_1.tscn" id="15_y2xt1"]
 [ext_resource type="Texture2D" uid="uid://w8hgb818rjtk" path="res://asset/object/boxes&decor/barrel1.png" id="30_bw2vv"]
 [ext_resource type="Texture2D" uid="uid://b5flt0npc37l" path="res://asset/object/boxes&decor/barrel2.png" id="31_xs1iu"]
 [ext_resource type="Texture2D" uid="uid://dmn1o3gxffm54" path="res://asset/object/boxes&decor/box1.png" id="32_6dama"]
@@ -2807,14 +2808,16 @@ tile_set = SubResource("TileSet_ltnm6")
 [node name="merchant" parent="." unique_id=1389123572 instance=ExtResource("11_1ko5m")]
 position = Vector2(717, 490)
 
-[node name="player" parent="." unique_id=2130383393 instance=ExtResource("11_yalrh")]
-position = Vector2(240, 504)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=939387938]
 position = Vector2(588, 495)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=521657319]
 position = Vector2(273, 115)
+shape = SubResource("WorldBoundaryShape2D_f1e8e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=595386707]
+position = Vector2(-313, -61)
+rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_f1e8e")
 
 [node name="real_peta" type="TileMapLayer" parent="." unique_id=1914770960]
@@ -2855,3 +2858,9 @@ texture = SubResource("GradientTexture2D_jnbfq")
 position = Vector2(317, 384)
 color = Color(2.6471912e-06, 0.50050586, 0.11230744, 1)
 texture = SubResource("GradientTexture2D_cdo41")
+
+[node name="bot-1" parent="." unique_id=682794179 instance=ExtResource("15_y2xt1")]
+position = Vector2(503, 475)
+
+[node name="player" parent="." unique_id=2130383393 instance=ExtResource("11_yalrh")]
+position = Vector2(240, 504)
