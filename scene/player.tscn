@@ -183,12 +183,14 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_xsw3c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=345220969]
+modulate = Color(0.7919991, 0.79199916, 0.7919991, 1)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_f1e8e")
-animation = &"pukul kiri"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195834636]
+visible = false
 position = Vector2(0, 5.9604645e-07)
 scale = Vector2(3.5, 3.5)
 shape = SubResource("CapsuleShape2D_c2rpq")
@@ -216,9 +218,8 @@ energy = 1.5
 texture = SubResource("PlaceholderTexture2D_oh5ij")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=407397124]
-scale = Vector2(2.8102007, 3.9637697)
-color = Color(0.8745098, 0.87058824, 0.43137255, 1)
 texture = SubResource("GradientTexture2D_s4jxa")
+texture_scale = 20.0
 
 [node name="combat_timer" type="Timer" parent="." unique_id=191422296]
 wait_time = 0.7
